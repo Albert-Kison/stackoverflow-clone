@@ -1,0 +1,15 @@
+<div class="flex justify-around items-center min-h-screen mx-auto">
+    <div class="flex flex-col items-center w-2/3">
+        <form class="w-2/3 mx-auto flex flex-col items-center justify-center">
+            <div class="mb-6 w-full">
+                <label for="email" class="block mb-2 text-lg text-black">Your email</label>
+                <input type="email" [(ngModel)]="loginUserData.email" name="email" id="email" class="text-black text-lg rounded-lg block p-2.5 w-full" placeholder="name@flowbite.com" required>
+            </div>
+            <div class="mb-6 w-full">
+                <label for="password" class="block mb-2 text-lg text-black">Your password</label>
+                <input type="password" [(ngModel)]="loginUserData.password" name="password" id="password" class="text-black text-lg rounded-lg block p-2.5 w-full" required>
+            </div>
+            <button type="submit" (click)="loginUser()" class="text-white bg-orange-400 hover:bg-orange-600 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+        </form>
+    </div>
+</div>

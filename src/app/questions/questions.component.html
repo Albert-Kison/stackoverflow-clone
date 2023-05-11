@@ -1,0 +1,9 @@
+<div class="p-6 text-lg">
+    <input type="text" id="first_name" [(ngModel)]="searchQuery" class="rounded-lg block w-full p-1" placeholder="Search">
+
+    <div>
+        <div *ngFor="let question of questions" class="bg-white p-1 mt-3 rounded-lg overflow-scroll">
+            <a routerLink="/question/{{question._id}}">{{question.text}}</a>
+        </div>
+    </div>
+</div>

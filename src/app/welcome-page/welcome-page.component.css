@@ -1,0 +1,7 @@
+#header {
+    background-image: url("./../../assets/img1.jpg");
+    background-repeat: no-repeat;
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center;
+}
