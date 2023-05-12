@@ -1,1 +1,14 @@
-<p>{{id}}</p>
+<div *ngIf="question" class="w-5/6 mx-auto break-words mt-5 text-lg">
+    <div>
+        <p>{{question.text}}</p>
+    </div>
+    <div class="mt-5">
+        <p>Answers</p>
+        <div *ngFor="let answer of question.answers" class="mb-5">
+            <p>{{answer.text}}</p>
+            <div *ngFor="let comment of answer.comments" class="w-5/6 mx-auto">
+                <p>{{comment}}</p>
+            </div>
+        </div>
+    </div>
+</div>

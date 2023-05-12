@@ -8,7 +8,7 @@ import { Observable, Subject, catchError, tap, throwError } from 'rxjs';
 export class QuestionsService {
   questionsUrl = "https://rocky-reaches-32477.herokuapp.com/api/getQuestions";
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
   };
   private searchResults?: any[];
 
@@ -41,6 +41,13 @@ export class QuestionsService {
 
   getSearchResults(): any[] {
     return this.searchResults as any[];
+  }
+
+  addQuestion(question: any): Observable<any[]> {
+    return this.http.post<any[]>(`https://rocky-reaches-32477.herokuapp.com/api/questions`, JSON.stringify(question), this.httpOptions).pipe(
+      tap(() => console.log("request made")),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

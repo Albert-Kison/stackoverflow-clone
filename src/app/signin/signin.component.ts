@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  registerUserData: User = {
+  registerUserData = {
     name: "",
     email: "",
     password: ""

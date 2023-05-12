@@ -11,6 +11,7 @@ export class QuestionDetailComponent implements OnInit {
   
   constructor(private questionsService: QuestionsService, private route: ActivatedRoute){}
   id = "";
+  question?: any
 
   ngOnInit(): void {
     console.log(this.route.snapshot.paramMap.get("id"));
@@ -19,6 +20,7 @@ export class QuestionDetailComponent implements OnInit {
     this.questionsService.getQuestion(this.id).subscribe({
       next: res => {
         console.log(res);
+        this.question = res;
       },
       error: err => console.log(err),
     });

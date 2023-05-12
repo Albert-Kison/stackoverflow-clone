@@ -13,7 +13,7 @@ export class WelcomePageComponent {
   searchValue = "";
 
   goToQuestions() {
-    this.router.navigate(["/allQuestions"]);
+    this.router.navigate(["/questions"]);
   }
 
   onSubmit() {
@@ -22,7 +22,7 @@ export class WelcomePageComponent {
       next: res => {
         console.log(res);
         this.questionService.setSearchResults(res);
-        this.router.navigate([`/${encodeURIComponent(this.searchValue)}`]);
+        this.router.navigate([`/questions/${encodeURIComponent(this.searchValue)}`]);
       },
       error: err => console.log(err),
     });

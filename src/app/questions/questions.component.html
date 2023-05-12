@@ -1,9 +1,15 @@
 <div class="p-6 text-lg">
-    <input type="text" id="first_name" [(ngModel)]="searchQuery" class="rounded-lg block w-full p-1" placeholder="Search">
+    <app-button-fill (click)="addQuestionClicked()" text="Ask Question"></app-button-fill>
+    <div class="flex justify-between space-x-2 mt-3">
+        <input type="text" id="first_name" [(ngModel)]="searchQuery" class="rounded-lg p-2 block w-full" placeholder="Search">
+        <app-button-fill (click)="search(searchQuery)" text="Search"></app-button-fill>
+    </div>
 
     <div>
-        <div *ngFor="let question of questions" class="bg-white p-1 mt-3 rounded-lg overflow-scroll">
+        <div *ngFor="let question of questions" class="bg-white p-1 mt-3 rounded-lg break-words max-h-40 overflow-hidden">
             <a routerLink="/question/{{question._id}}">{{question.text}}</a>
         </div>
     </div>
+
+    <app-add-question-modal *ngIf="modalService.isVisible$ | async"></app-add-question-modal>
 </div>

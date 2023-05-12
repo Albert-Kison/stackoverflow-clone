@@ -13,6 +13,12 @@ import { LoginComponent } from './login/login.component';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { SearchInputComponent } from './search-input/search-input.component';
+import { BecomeAProComponent } from './become-a-pro/become-a-pro.component';
+import { TagComponent } from './tag/tag.component';
+import { ButtonFillComponent } from './button-fill/button-fill.component';
+import { AddQuestionModalComponent } from './add-question-modal/add-question-modal.component';
+import { TagInputComponent } from './tag-input/tag-input.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,13 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
     SigninComponent,
     LoginComponent,
     QuestionsComponent,
-    QuestionDetailComponent
+    QuestionDetailComponent,
+    SearchInputComponent,
+    BecomeAProComponent,
+    TagComponent,
+    ButtonFillComponent,
+    AddQuestionModalComponent,
+    TagInputComponent
   ],
   imports: [
     BrowserModule,

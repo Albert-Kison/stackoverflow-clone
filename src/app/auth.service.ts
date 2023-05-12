@@ -16,7 +16,16 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   addUser(user: any): Observable<any> {
-    return this.http.post<any>(this.registerUrl, user, this.httpOptions).pipe(
+    console.log(JSON.stringify(user));
+    return this.http.post<any>(this.registerUrl, JSON.stringify(user), this.httpOptions).pipe(
+      tap(() => console.log("request made")),
+      catchError(this.handleError)
+    );
+  }
+
+  addExpert(user: any): Observable<any> {
+    console.log(JSON.stringify(user));
+    return this.http.post<any>("https://rocky-reaches-32477.herokuapp.com/api/expertSignUp", JSON.stringify(user), this.httpOptions).pipe(
       tap(() => console.log("request made")),
       catchError(this.handleError)
     );
