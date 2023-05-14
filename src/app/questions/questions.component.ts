@@ -11,9 +11,15 @@ import { ModalServiceService } from '../modal-service.service';
 })
 export class QuestionsComponent implements OnInit {
   searchQuery = "";
-  questions: any[] = [];
+  filters: any = {
+    notAnswered: false
+  }
+  loading = true;
+  currentPage = 1;
+  filteredQuestions: any[] = [];
+  // questions: any[] = [];
 
-  constructor(private questionService: QuestionsService, private route: ActivatedRoute, private router: Router, private location: Location, public modalService: ModalServiceService){}
+  constructor(public questionService: QuestionsService, private route: ActivatedRoute, private router: Router, private location: Location, public modalService: ModalServiceService){}
 
   ngOnInit(): void {
     console.log("kjerhf");
@@ -37,32 +43,26 @@ export class QuestionsComponent implements OnInit {
 
   getAllQuestions() {
     this.questionService.getQuestions().subscribe({
-      next: res => {
-        console.log(res);
-        if (res.length === 0) {
-          console.log("No questions yet");          
-        } else {
-          this.questions = res;
-        }
+      next: (res) => {
+        this.loading = false;
+        this.filteredQuestions = res;
       },
       error: err => console.log(err),
     });
   }
 
   search(text: string) {
+    console.log(text);
+    
     if (text === "") {
       this.router.navigate([`/questions`]);
       this.getAllQuestions();
     } else {
       this.router.navigate([`/questions/${encodeURIComponent(text)}`]);
       this.questionService.searchByText(text).subscribe({
-        next: res => {
-          console.log(res);
-          if (res.length === 0) {
-            console.log("No questions yet");          
-          } else {
-            this.questions = res;
-          }
+        next: (res) => {
+          this.loading = false;
+          this.filteredQuestions = res;
 
         },
         error: err => console.log(err),
@@ -77,4 +77,36 @@ export class QuestionsComponent implements OnInit {
       this.modalService.open();
     }
   }
+
+  onFiltersChanged(selectedFilters: any) {
+    this.filters = selectedFilters;
+    
+    this.filteredQuestions = this.questionService.questions.filter(question => {
+      if (this.filters.notAnswered) {
+        return !question.answered;
+      }
+      return true; // return all questions if notAnswered filter is not selected
+    });
+  }
+
+  changePage(page: number): void {
+    this.currentPage = page;
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+  
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is zero-based
+    const year = date.getFullYear();
+  
+    const formattedDate = `${this.padZero(day)}/${this.padZero(month)}/${year}`;
+  
+    return formattedDate;
+  }
+  
+  padZero(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
+  }
+  
 }

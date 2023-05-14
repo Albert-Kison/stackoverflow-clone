@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,14 @@ import { TagComponent } from './tag/tag.component';
 import { ButtonFillComponent } from './button-fill/button-fill.component';
 import { AddQuestionModalComponent } from './add-question-modal/add-question-modal.component';
 import { TagInputComponent } from './tag-input/tag-input.component';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
+import { AddAnswerComponent } from './add-answer/add-answer.component';
+import { FiltersComponent } from './filters/filters.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { UsersComponent } from './users/users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditQuestionComponent } from './edit-question/edit-question.component';
+import { AnswersComponent } from './answers/answers.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +44,22 @@ import { TagInputComponent } from './tag-input/tag-input.component';
     TagComponent,
     ButtonFillComponent,
     AddQuestionModalComponent,
-    TagInputComponent
+    TagInputComponent,
+    ModalWindowComponent,
+    AddAnswerComponent,
+    FiltersComponent,
+    PaginationComponent,
+    UsersComponent,
+    EditUserComponent,
+    EditQuestionComponent,
+    AnswersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

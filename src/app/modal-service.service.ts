@@ -7,6 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 export class ModalServiceService {
 
   isVisible$ = new BehaviorSubject<boolean>(false);
+  openAddAnswer = false;
+  openEditQuestion = false;
+  openEditAnswer = false;
 
   constructor() { }
 
@@ -15,6 +18,9 @@ export class ModalServiceService {
   }
 
   close() {
+    this.openAddAnswer = false;
+    this.openEditQuestion = false;
+    this.openEditAnswer = false;
     this.isVisible$.next(false);
   }
 }

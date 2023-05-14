@@ -12,8 +12,12 @@
             <div class="mb-6 w-full">
                 <label for="password" class="block mb-2 text-lg text-black">Your password</label>
                 <input type="password" [(ngModel)]="registerUserData.password" name="password" id="password" class="text-black text-lg rounded-lg block p-2.5 w-full" required>
+                <p *ngIf="registerUserData.password.length < 8">Password must contain at least 8 symbols</p>
             </div>
-            <button type="submit" class="text-white bg-orange-400 hover:bg-orange-600 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+            <div *ngIf="showError" class="mb-6 w-full text-red-600">
+                <p>There was a problem with the sign up. Make sure you filled out the fields correctly</p>
+            </div>
+            <button type="submit" class="text-white bg-orange-400 hover:bg-orange-600 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">Sign in</button>
         </form>
     </div>
 </div>

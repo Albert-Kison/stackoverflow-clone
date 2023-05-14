@@ -6,15 +6,18 @@ import { LoginComponent } from './login/login.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { BecomeAProComponent } from './become-a-pro/become-a-pro.component';
+import { UsersComponent } from './users/users.component';
+import { UserRoleGuard } from './user-role.guard';
 
 const routes: Routes = [
   { path: '', component: WelcomePageComponent },
-  { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SigninComponent },
   { path: 'login', component: LoginComponent },
   { path: 'become-pro', component: BecomeAProComponent },
   { path: 'questions/:text', component: QuestionsComponent },
   { path: 'questions', component: QuestionsComponent },
-  { path: 'question/:id', component: QuestionDetailComponent }
+  { path: 'question/:id', component: QuestionDetailComponent },
+  { path: 'users', component: UsersComponent, canActivate: [UserRoleGuard] }
 ];
 
 @NgModule({

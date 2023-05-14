@@ -14,6 +14,7 @@ export class SigninComponent {
     email: "",
     password: ""
   };
+  showError = false;
 
   constructor(private auth: AuthService, private router: Router){}
 
@@ -21,11 +22,11 @@ export class SigninComponent {
     console.log(this.registerUserData);
     this.auth.addUser(this.registerUserData).subscribe({
       next: res => {
+        this.showError = false;
         console.log(res);
-        localStorage.setItem("token", res.token);
-        this.router.navigate(["/"]);
+        this.router.navigate(["/login"]);
       },
-      error: err => console.log(err),
+      error: err => this.showError = true,
     });
   }
 }

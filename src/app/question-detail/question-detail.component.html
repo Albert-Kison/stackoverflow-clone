@@ -1,14 +1,39 @@
-<div *ngIf="question" class="w-5/6 mx-auto break-words mt-5 text-lg">
-    <div>
-        <p>{{question.text}}</p>
-    </div>
-    <div class="mt-5">
-        <p>Answers</p>
-        <div *ngFor="let answer of question.answers" class="mb-5">
-            <p>{{answer.text}}</p>
-            <div *ngFor="let comment of answer.comments" class="w-5/6 mx-auto">
-                <p>{{comment}}</p>
-            </div>
+<p *ngIf="!questionsService.question" >This question does not exist</p>
+
+
+<!-- Question content -->
+<div *ngIf="questionsService.question" class="w-full md:w-5/6 mx-auto p-4 md:p-0 break-words mt-5 text-lg">
+    <div class="bg-white p-4">
+        <p class="text-2xl">{{questionsService.question.questionName}}</p>
+        <p>{{questionsService.question.text}}</p>
+        <img *ngIf="questionsService.question.link" src="{{questionsService.question.link}}" alt="image">
+        <div class="flex space-x-1" *ngIf="authService.getDecodedToken()._id === questionsService.question.owner._id || authService.getDecodedToken()._id  === questionsService.question.owner">
+            <button type="button" (click)="editButtonClicked(questionsService.question)" class="bg-orange-400 hover:bg-orange-500 p-1 text-white rounded-md text-sm">Edit</button>
+            <button type="button" (click)="deleteButtonClicked(questionsService.question)" class="bg-red-600 hover:bg-red-700 p-1 text-white rounded-md text-sm">Delete</button>
         </div>
     </div>
+
+
+    <!-- Answers and comments -->
+    <div class="mt-5">
+        <p>Answers</p>
+        <app-answers [question]="question"></app-answers>
+    </div>
+
+
+    <div *ngIf="authService.isExpert()" class="mt-5">
+        <app-button-fill (click)="addAnswerClicked()" text="Add Answer"></app-button-fill>
+    </div>
+
+
+    <app-modal-window *ngIf="(modalService.isVisible$ | async) && modalService.openAddAnswer">
+        <app-add-answer [questionId]="question._id"></app-add-answer>
+    </app-modal-window>
+
+
+    <app-modal-window *ngIf="(modalService.isVisible$ | async) && modalService.openEditQuestion">
+        <app-add-question-modal [originalQuestion]="question"></app-add-question-modal>
+    </app-modal-window>
+
+
 </div>

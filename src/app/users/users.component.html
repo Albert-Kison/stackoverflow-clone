@@ -1,0 +1,23 @@
+<div class="p-6 grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+    <div *ngFor="let user of usersService.users.slice().reverse()" [class]="'bg-white flex flex-col space-y-4 justify-between p-1 w-full rounded-lg overflow-scroll ' + (user.isAdmin ? 'border border-orange-400' : '')">
+        <div>
+            <p>Name: {{user.name}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Status: {{user.isAdmin ? "Admin" : user.isExpert ? "Expert" : "User"}}</p>
+            <div *ngIf="user.tags.length > 0" class="flex space-x-2">
+                <p>Tags: </p>
+                <div class="flex space-x-1">
+                    <app-tag *ngFor="let tag of user.tags" [tag]="tag"></app-tag>
+                </div>
+            </div>
+        </div>
+        <div class="flex space-x-1">
+            <button type="button" (click)="editButtonClicked(user)" class="bg-orange-400 hover:bg-orange-500 p-1 text-white rounded-md text-sm">Edit</button>
+            <button *ngIf="authService.getDecodedToken()._id !== user._id" type="button" (click)="deleteButtonClicked(user)" class="bg-red-600 hover:bg-red-700 p-1 text-white rounded-md text-sm">Delete</button>
+        </div>
+
+    </div>
+    <app-modal-window *ngIf="modalService.isVisible$ | async">
+        <app-edit-user [user]="selectedUser"></app-edit-user>
+    </app-modal-window>
+</div>

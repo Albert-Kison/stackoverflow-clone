@@ -51,8 +51,7 @@ export class BecomeAProComponent {
     this.auth.addExpert(this.registerUserData).subscribe({
       next: res => {
         console.log(res);
-        localStorage.setItem("token", res.token);
-        this.router.navigate(["/"]);
+        this.router.navigate(["/login"]);
       },
       error: err => console.log(err),
     });

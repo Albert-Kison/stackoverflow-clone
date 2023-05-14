@@ -12,6 +12,7 @@ export class LoginComponent {
     email: "",
     password: ""
   };
+  showError = false;
 
   constructor(private auth: AuthService, private router: Router){}
 
@@ -19,11 +20,12 @@ export class LoginComponent {
     console.log(this.loginUserData);
     this.auth.loginUser(this.loginUserData).subscribe({
       next: res => {
+        this.showError = false;
         console.log(res);
         localStorage.setItem("token", res.token);
         this.router.navigate(["/"]);
       },
-      error: err => console.log(err),
+      error: err => this.showError = true
     });
   }
 }

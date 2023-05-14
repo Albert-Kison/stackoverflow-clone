@@ -1,0 +1,28 @@
+<form (ngSubmit)="onSubmit()" #questionForm="ngForm" class="w-full mx-auto flex flex-col items-center justify-center">
+    <div class="mb-6 w-full">
+        <label for="name" class="block mb-2 text-lg text-black">Name</label>
+        <input type="text" [(ngModel)]="userToEdit.name" name="name" id="name" [value]="userToEdit.name" class="text-black text-lg rounded-lg block p-2.5 w-full bg-white" placeholder="Albert Kison" required>
+    </div>
+    <div class="mb-6 w-full">
+        <label for="email" class="block mb-2 text-lg text-black">Email</label>
+        <input type="email" [(ngModel)]="userToEdit.email" name="email" id="email" [value]="userToEdit.email" class="text-black text-lg rounded-lg block p-2.5 w-full bg-white" placeholder="Albert Kison" required>
+    </div>    
+    <div class="mb-6 w-full">
+        <app-tag-input></app-tag-input>
+        <div *ngIf="userToEdit.tags.length > 0">
+            <div *ngFor="let tag of userToEdit.tags" class="mt-1 flex justify-between">
+                <app-tag [tag]="tag"></app-tag>
+                <button type="button" (click)="deleteTag(tag)"><svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path></svg></button>
+            </div>
+        </div>
+    </div>
+    <div class="mb-6 w-full">
+        <label for="password" class="block mb-2 text-lg text-black">Your password</label>
+        <input type="password" [(ngModel)]="userToEdit.password" name="password" id="password" class="text-black text-lg rounded-lg block p-2.5 w-full" required>
+        <p *ngIf="userToEdit.password.length < 8">Password must contain at least 8 symbols</p>
+    </div>
+    <div *ngIf="showError" class="mb-6 w-full">
+        <p class="text-red-600">Make sure you filled out all the fields</p>
+    </div>
+    <button type="submit" class="text-white bg-orange-400 hover:bg-orange-600 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+</form>
