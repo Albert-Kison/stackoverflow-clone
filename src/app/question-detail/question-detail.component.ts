@@ -30,6 +30,26 @@ export class QuestionDetailComponent implements OnInit {
     });
   }
 
+  isEmpty(): boolean {
+    return Object.keys(this.questionsService.question).length === 0;
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+  
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is zero-based
+    const year = date.getFullYear();
+  
+    const formattedDate = `${this.padZero(day)}/${this.padZero(month)}/${year}`;
+  
+    return formattedDate;
+  }
+
+  padZero(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
+  }
+
   addAnswerClicked() {
     this.modalService.openAddAnswer = true;
     this.modalService.open();

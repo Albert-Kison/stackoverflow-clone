@@ -28,6 +28,7 @@ export class QuestionsService {
   }
 
   getQuestion(id: string): Observable<any> {
+    this.question = {};
     return this.http.get<any>(`https://rocky-reaches-32477.herokuapp.com/api/search/${id}`, this.httpOptions).pipe(
       tap((res) => {
         this.question = res;

@@ -40,6 +40,32 @@ export class AnswersComponent {
     
   }
 
+  compare = (a: { upvotes: number }, b: { upvotes: number }) => {    
+    if (a.upvotes < b.upvotes) {
+      return 1; // Reverse the comparison order
+    }
+    if (a.upvotes > b.upvotes) {
+      return -1; // Reverse the comparison order
+    }
+    return 0;
+  };
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+  
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is zero-based
+    const year = date.getFullYear();
+  
+    const formattedDate = `${this.padZero(day)}/${this.padZero(month)}/${year}`;
+  
+    return formattedDate;
+  }
+
+  padZero(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
+  }
+
   upvoteButtonClicked(answer: any) {
     this.questionsService.upvoteAnswer(answer._id, this.question._id).subscribe({
       next: () => {
