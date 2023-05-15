@@ -12,8 +12,8 @@ const app = express();
 app.use(express.static(__dirname+'/dist/ass04'));
 
 app.get('/*', function(req, res) {
-    console.log(__dirname+'dist/ass04/index.html');
-    res.sendFile(__dirname+'dist/ass04/index.html')
+    console.log(__dirname+'/dist/ass04/index.html');
+    res.sendFile(__dirname+'/dist/ass04/index.html')
 });
 
 app.listen(process.env.PORT || 8080, (req, res) => {
