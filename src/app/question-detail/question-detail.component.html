@@ -45,7 +45,7 @@
 
 
     <app-modal-window *ngIf="(modalService.isVisible$ | async) && modalService.openEditQuestion">
-        <app-add-question-modal [originalQuestion]="question"></app-add-question-modal>
+        <app-add-question-modal [originalQuestion]="questionsService.question"></app-add-question-modal>
     </app-modal-window>
 
 
