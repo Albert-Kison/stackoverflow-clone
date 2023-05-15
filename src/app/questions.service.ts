@@ -112,6 +112,7 @@ export class QuestionsService {
   upvoteAnswer(answerId: any, questionId: any): Observable<any> {
     return this.http.patch<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/${questionId}/answers/${answerId}/upvote`, this.httpOptions).pipe(
       tap((res) => {
+        console.log("wehf ewfhierhfier f8h");
         
         console.log(res);
         
