@@ -6,7 +6,7 @@ import { Observable, Subject, catchError, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class QuestionsService {
-  questionsUrl = "https://rocky-reaches-32477.herokuapp.com/api/getQuestions";
+  questionsUrl = "https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/getQuestions";
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -29,7 +29,7 @@ export class QuestionsService {
 
   getQuestion(id: string): Observable<any> {
     this.question = {};
-    return this.http.get<any>(`https://rocky-reaches-32477.herokuapp.com/api/search/${id}`, this.httpOptions).pipe(
+    return this.http.get<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/search/${id}`, this.httpOptions).pipe(
       tap((res) => {
         this.question = res;
       }),
@@ -40,7 +40,7 @@ export class QuestionsService {
   searchByText(text: string): Observable<any[]> {
     console.log(text);
     
-    return this.http.post<any[]>(`https://rocky-reaches-32477.herokuapp.com/api/search/text`, {text: text}, this.httpOptions).pipe(
+    return this.http.post<any[]>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/search/text`, {text: text}, this.httpOptions).pipe(
       tap((res) => this.questions = res),
       catchError(this.handleError)
     );
@@ -55,49 +55,49 @@ export class QuestionsService {
   }
 
   addQuestion(question: any): Observable<any[]> {
-    return this.http.post<any[]>(`https://rocky-reaches-32477.herokuapp.com/api/questions`, JSON.stringify(question), this.httpOptions).pipe(
+    return this.http.post<any[]>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions`, JSON.stringify(question), this.httpOptions).pipe(
       tap((res) => this.questions.unshift(res)),
       // catchError(this.handleError)
     );
   }
 
   editQuestion(question: any, id: number): Observable<any> {
-    return this.http.post<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/${id}`, JSON.stringify(question), this.httpOptions).pipe(
+    return this.http.post<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions/${id}`, JSON.stringify(question), this.httpOptions).pipe(
       tap((res) => {this.question = res}),
       catchError(this.handleError)
     );
   }
 
   deleteQuestion(id: number): Observable<any> {
-    return this.http.delete<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/${id}`, this.httpOptions).pipe(
+    return this.http.delete<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions/${id}`, this.httpOptions).pipe(
       tap((res) => {this.question = null}),
       catchError(this.handleError)
     );
   }
 
   addAnswer(answer: any): Observable<any> {
-    return this.http.put<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/answers/${answer.questionId}`, JSON.stringify(answer), this.httpOptions).pipe(
+    return this.http.put<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions/answers/${answer.questionId}`, JSON.stringify(answer), this.httpOptions).pipe(
       tap((res) => this.question = res),
       catchError(this.handleError)
     );
   }
 
   editAnswer(answer: any, answerId: any): Observable<any> {
-    return this.http.patch<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/${answer.questionId}/answers/${answerId}`, JSON.stringify(answer), this.httpOptions).pipe(
+    return this.http.patch<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions/${answer.questionId}/answers/${answerId}`, JSON.stringify(answer), this.httpOptions).pipe(
       tap((res) => this.question = res),
       catchError(this.handleError)
     );
   }
 
   deleteAnswer(questionId: any, answerId: any): Observable<any> {
-    return this.http.delete<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/${questionId}/answers/${answerId}`, this.httpOptions).pipe(
+    return this.http.delete<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions/${questionId}/answers/${answerId}`, this.httpOptions).pipe(
       tap((res) => this.question = res),
       catchError(this.handleError)
     );
   }
 
   approveAnswer(answerId: any, questionId: any): Observable<any> {
-    return this.http.patch<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/${questionId}/answers/${answerId}/approve`, this.httpOptions).pipe(
+    return this.http.patch<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions/${questionId}/answers/${answerId}/approve`, this.httpOptions).pipe(
       tap((res) => {
         
         console.log(res);
@@ -110,7 +110,7 @@ export class QuestionsService {
   }
 
   upvoteAnswer(answerId: any, questionId: any): Observable<any> {
-    return this.http.patch<any>(`https://rocky-reaches-32477.herokuapp.com/api/questions/${questionId}/answers/${answerId}/upvote`, this.httpOptions).pipe(
+    return this.http.patch<any>(`https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/questions/${questionId}/answers/${answerId}/upvote`, this.httpOptions).pipe(
       tap((res) => {
         console.log("wehf ewfhierhfier f8h");
         

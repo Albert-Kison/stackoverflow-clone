@@ -18,6 +18,7 @@ export class QuestionDetailComponent implements OnInit {
   question?: any
 
   ngOnInit(): void {
+    // console.log("peorkfp");    
     console.log(this.route.snapshot.paramMap.get("id"));
     
     this.id = this.route.snapshot.paramMap.get("id") as string;

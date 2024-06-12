@@ -6,7 +6,7 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  usersUrl = "https://rocky-reaches-32477.herokuapp.com/api/users";
+  usersUrl = "https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/users";
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

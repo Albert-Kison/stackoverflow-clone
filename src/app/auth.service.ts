@@ -10,8 +10,8 @@ import jwt_decode from 'jwt-decode';
 })
 export class AuthService {
 
-  registerUrl = "https://rocky-reaches-32477.herokuapp.com/api/signup";
-  loginUrl = "https://rocky-reaches-32477.herokuapp.com/api/signin";
+  registerUrl = "https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/signup";
+  loginUrl = "https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/signin";
   error?: any;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   addExpert(user: any): Observable<any> {
-    return this.http.post<any>("https://rocky-reaches-32477.herokuapp.com/api/expertSignUp", JSON.stringify(user), this.httpOptions).pipe(
+    return this.http.post<any>("https://stackoverflow-server-2f04cff194e7.herokuapp.com/api/expertSignUp", JSON.stringify(user), this.httpOptions).pipe(
       tap(() => console.log("request made")),
       catchError(this.handleError)
     );
@@ -55,7 +55,7 @@ export class AuthService {
       
       return decodedToken;
     }
-    return null;
+    return "";
   }
 
   isExpert(): boolean {
