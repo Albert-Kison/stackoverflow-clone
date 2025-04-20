@@ -1,27 +1,33 @@
-# Ass04
+# Forums Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+A full-stack web application that allows users to post and answer questions.
 
-## Development server
+## Features
+- User registration and authentication
+- Ask questions, post answers
+- Upvote and approve answers (approved answers float to the top)
+- Search through questions
+- Edit/delete your own questions and answers
+- Manage own profile
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologies Used
+- Angular (Frontend)
+- Node.js + Express (Backend)
+- MongoDB (Database)
+- JWT for authentication
 
-## Code scaffolding
+## What I Learned
+- Angular and component-based architecture
+- REST API design
+- Handling user permissions and roles
+- Full-stack application structure (MVC)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Screenshots
+(Add screenshots here if available)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## How to Run
+1. Clone this repository
+2. Install backend dependencies: `npm install` in `/server`
+3. Install frontend dependencies: `npm install` in `/client`
+4. Start backend: `npm run start` in `/server`
+5. Start frontend: `ng serve` in `/client`
