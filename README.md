@@ -22,9 +22,6 @@ A full-stack web application that allows users to post and answer questions.
 - Handling user permissions and roles
 - Full-stack application structure (MVC)
 
-## Screenshots
-(Add screenshots here if available)
-
 ## How to Run
 1. Clone this repository
 2. Install backend dependencies: `npm install` in `/server`
