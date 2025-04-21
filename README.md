@@ -22,9 +22,8 @@ A full-stack web application that allows users to post and answer questions.
 - Handling user permissions and roles
 - Full-stack application structure (MVC)
 
-## How to Run
-1. Clone this repository
-2. Install backend dependencies: `npm install` in `/server`
-3. Install frontend dependencies: `npm install` in `/client`
-4. Start backend: `npm run start` in `/server`
-5. Start frontend: `ng serve` in `/client`
+## Screenshot
+![Homepage](https://github.com/Albert-Kison/stackoverflow-clone/blob/main/Screenshot_Forums_Website.png)
+
+## Links
+https://stackoverflow-client-64cac6d911e2.herokuapp.com
